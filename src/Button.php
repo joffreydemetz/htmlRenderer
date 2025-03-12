@@ -37,6 +37,11 @@ class Button extends Renderable
     $this->href = $href;
   }
 
+  public function getName(): string
+  {
+    return $this->name;
+  }
+
   public function setTip(string $tip)
   {
     $this->tip = $tip;
