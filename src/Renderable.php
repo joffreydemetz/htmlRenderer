@@ -17,20 +17,14 @@ use JDZ\Renderer\RenderableInterface;
 abstract class Renderable implements RenderableInterface
 {
   protected string $renderer;
-  public int $position = 0;
-  public array $dataAttrs = [];
-  public array $ariaAttrs = [];
-  public array $styles = [];
+  protected int $position = 0;
+  protected array $dataAttrs = [];
+  protected array $ariaAttrs = [];
+  protected array $styles = [];
 
   public function __clone()
   {
     $this->position = 0;
-  }
-
-  public function setRenderer(string $renderer)
-  {
-    $this->renderer = $renderer;
-    return $this;
   }
 
   public function setPosition(int $position)

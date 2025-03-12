@@ -14,5 +14,25 @@ namespace JDZ\Renderer;
  */
 interface RenderableInterface
 {
+  public function setPosition(int $position);
+
+  public function getDataAttr(string $key): mixed;
+
+  public function addDataAttr(string $key, mixed $value);
+
+  public function removeDataAttr(string $key);
+
+  public function getAriaAttr(string $key): mixed;
+
+  public function addAriaAttr(string $key, mixed $value);
+
+  public function removeAriaAttr(string $key);
+
+  public function addStyles(array|string $styles);
+
+  public function addStyle(string $style);
+
+  public function removeStyle(string $style);
+
   public function toData(): array;
 }

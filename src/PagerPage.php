@@ -16,7 +16,7 @@ use JDZ\Renderer\Button;
  */
 class PagerPage extends Button
 {
-  // public string $renderer = 'pager.page';
+  // protected string $renderer = 'pager.page';
   private int $page;
   private bool $active = false;
   private bool $disabled = false;
