@@ -1,0 +1,26 @@
+{
+    "name": "jdz/htmlrenderer",
+    "type": "library",
+    "description": "HTML Renderer",
+    "keywords": [
+        "JDZ",
+        "utilities",
+        "html"
+    ],
+    "homepage": "https://jdz.joffreydemetz.com/htmlRenderer/",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joffrey Demetz",
+            "email": "joffrey.demetz@gmail.com",
+            "homepage": "https://joffreydemetz.com",
+            "role": "Lead"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "JDZ\\Renderer\\": "src"
+        }
+    }
+}
