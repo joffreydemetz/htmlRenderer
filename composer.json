@@ -5,9 +5,10 @@
     "keywords": [
         "JDZ",
         "utilities",
-        "html"
+        "html",
+        "twig"
     ],
-    "homepage": "https://jdz.joffreydemetz.com/htmlRenderer/",
+    "homepage": "https://jdz.joffreydemetz.com/htmlrenderer/",
     "license": "MIT",
     "authors": [
         {
