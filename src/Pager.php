@@ -18,8 +18,9 @@ use JDZ\Renderer\Renderable;
 class Pager extends Renderable
 {
   protected string $renderer = 'pager';
+
   private int $maxPageNum;
-  private int $currentPageNum;
+  private ?int $currentPageNum = null;
   private ?string $baseUrl = null;
   private string $prevSymbol = '«';
   private string $nextSymbol = '»';
@@ -75,7 +76,7 @@ class Pager extends Renderable
             ->withHidden()
             ->setText('...');
 
-          if (1 === $pagerPage->getPage() || $pagerPage->getPage() === $nbPages) {
+          if (1 === $pagerPage->getPage() || $nbPages === $pagerPage->getPage()) {
             // show first & last page holding the dots
             $pagerPage->withHidden(false);
           }

@@ -9,26 +9,30 @@
 
 namespace JDZ\Renderer;
 
+use JDZ\Renderer\NameableInterface;
+use JDZ\Renderer\PositionableInterface;
 use JDZ\Renderer\Renderable;
 
 /**
  * @author Joffrey Demetz <joffrey.demetz@gmail.com>
  */
-class Span extends Renderable
+abstract class Element extends Renderable implements NameableInterface, PositionableInterface
 {
-  protected string $renderer = 'span';
-  protected string $text = '';
+  use \JDZ\Renderer\NamedElementTrait,
+    \JDZ\Renderer\PositionedElementTrait;
 
-  public function __construct(string $text)
+  public function __clone()
   {
-    $this->text = $text;
+    $this->position = 0;
   }
 
   public function toData(): array
   {
     $data = parent::toData();
 
-    $data['text'] = $this->text;
+    if ($this->position) {
+      $data['position'] = $this->position;
+    }
 
     return $data;
   }

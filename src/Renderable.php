@@ -17,21 +17,9 @@ use JDZ\Renderer\RenderableInterface;
 abstract class Renderable implements RenderableInterface
 {
   protected string $renderer;
-  protected int $position = 0;
   protected array $dataAttrs = [];
   protected array $ariaAttrs = [];
   protected array $styles = [];
-
-  public function __clone()
-  {
-    $this->position = 0;
-  }
-
-  public function setPosition(int $position)
-  {
-    $this->position = $position;
-    return $this;
-  }
 
   public function getDataAttr(string $key): mixed
   {
@@ -99,11 +87,6 @@ abstract class Renderable implements RenderableInterface
     $data = [];
 
     $data['renderer'] = $this->renderer;
-
-    if ($this->position) {
-      $data['position'] = $this->position;
-    }
-
     $data['attrs'] = $this->renderAttrs();
 
     return $data;

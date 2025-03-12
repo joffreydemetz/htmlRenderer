@@ -18,8 +18,10 @@ use JDZ\Renderer\Renderable;
  */
 class Button extends Renderable
 {
+  use \JDZ\Renderer\NamedElementTrait;
+
   protected string $renderer = 'button';
-  protected string $name;
+
   protected string $tag;
   protected ?string $href;
   protected ?string $target;
@@ -35,11 +37,6 @@ class Button extends Renderable
     $this->tag = $tag;
     $this->target = $target;
     $this->href = $href;
-  }
-
-  public function getName(): string
-  {
-    return $this->name;
   }
 
   public function setTip(string $tip)

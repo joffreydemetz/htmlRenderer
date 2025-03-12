@@ -14,8 +14,6 @@ namespace JDZ\Renderer;
  */
 interface RenderableInterface
 {
-  public function setPosition(int $position);
-
   public function getDataAttr(string $key): mixed;
 
   public function addDataAttr(string $key, mixed $value);

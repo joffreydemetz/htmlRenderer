@@ -10,12 +10,15 @@
 namespace JDZ\Renderer;
 
 use JDZ\Renderer\Button;
+use JDZ\Renderer\NameableInterface;
 
 /**
  * @author Joffrey Demetz <joffrey.demetz@gmail.com>
  */
-class PagerPage extends Button
+class PagerPage extends Button implements NameableInterface
 {
+  use \JDZ\Renderer\NamedElementTrait;
+
   // protected string $renderer = 'pager.page';
   private int $page;
   private bool $active = false;
@@ -28,11 +31,6 @@ class PagerPage extends Button
 
     $this->text = $name;
     $this->page = (int)$name;
-  }
-
-  public function getPage(): int
-  {
-    return $this->page;
   }
 
   public function withActive(bool $active = true)
@@ -51,6 +49,11 @@ class PagerPage extends Button
   {
     $this->hidden = $hidden;
     return $this;
+  }
+
+  public function getPage(): int
+  {
+    return $this->page;
   }
 
   public function setPage(int $page)
