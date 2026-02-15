@@ -26,13 +26,13 @@ abstract class Renderable implements RenderableInterface
     return $this->dataAttrs[$key] ?? null;
   }
 
-  public function addDataAttr(string $key, mixed $value)
+  public function addDataAttr(string $key, mixed $value): static
   {
     $this->dataAttrs[$key] = $value;
     return $this;
   }
 
-  public function removeDataAttr(string $key)
+  public function removeDataAttr(string $key): static
   {
     unset($this->dataAttrs[$key]);
     return $this;
@@ -43,19 +43,19 @@ abstract class Renderable implements RenderableInterface
     return $this->ariaAttrs[$key] ?? null;
   }
 
-  public function addAriaAttr(string $key, mixed $value)
+  public function addAriaAttr(string $key, mixed $value): static
   {
     $this->ariaAttrs[$key] = $value;
     return $this;
   }
 
-  public function removeAriaAttr(string $key)
+  public function removeAriaAttr(string $key): static
   {
     unset($this->ariaAttrs[$key]);
     return $this;
   }
 
-  public function addStyles(array|string $styles)
+  public function addStyles(array|string $styles): static
   {
     if (!is_array($styles)) {
       $styles = explode(' ', $styles);
@@ -66,7 +66,7 @@ abstract class Renderable implements RenderableInterface
     return $this;
   }
 
-  public function addStyle(string $style)
+  public function addStyle(string $style): static
   {
     if (!in_array($style, $this->styles)) {
       $this->styles[] = $style;
@@ -74,7 +74,7 @@ abstract class Renderable implements RenderableInterface
     return $this;
   }
 
-  public function removeStyle(string $style)
+  public function removeStyle(string $style): static
   {
     if (false !== ($k = array_search($style, $this->styles))) {
       unset($this->styles[$k]);

@@ -14,6 +14,8 @@ use JDZ\Renderer\Renderable;
 
 /**
  * @author Joffrey Demetz <joffrey.demetz@gmail.com>
+ * $pager->setPrevText( $this->language->_('PREV') );
+ * $pager->setNextText( $this->language->_('NEXT') );
  */
 class Pager extends Renderable
 {
@@ -33,7 +35,31 @@ class Pager extends Renderable
     $this->maxPageNum = $maxPageNum;
   }
 
-  public function load(int $nbPages, int $page, string $baseUrl = '')
+  public function setPrevSymbol(string $prevSymbol): static
+  {
+    $this->prevSymbol = $prevSymbol;
+    return $this;
+  }
+
+  public function setNextSymbol(string $nextSymbol): static
+  {
+    $this->nextSymbol = $nextSymbol;
+    return $this;
+  }
+
+  public function setPrevText(string $prevText): static
+  {
+    $this->prevText = $prevText;
+    return $this;
+  }
+
+  public function setNextText(string $nextText): static
+  {
+    $this->nextText = $nextText;
+    return $this;
+  }
+
+  public function load(int $nbPages, int $page, string $baseUrl = ''): static
   {
     $this->currentPageNum = $page;
     $this->baseUrl = $baseUrl;
@@ -99,13 +125,13 @@ class Pager extends Renderable
   public function addPage(int $page): PagerPage
   {
     if (!isset($this->pages[$page])) {
-      $this->pages[$page] = new PagerPage($page);
+      $this->pages[$page] = new PagerPage((string)$page);
     }
 
     return $this->getPage($page);
   }
 
-  public function removePage(int $page)
+  public function removePage(int $page): static
   {
     unset($this->pages[$page]);
     return $this;
@@ -124,7 +150,7 @@ class Pager extends Renderable
   {
     $pages = [];
 
-    if ($this->currentPageNum < 1) {
+    if (null === $this->currentPageNum || $this->currentPageNum < 1) {
       $this->currentPageNum = 1;
     }
 

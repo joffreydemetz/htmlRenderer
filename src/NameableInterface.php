@@ -15,5 +15,5 @@ namespace JDZ\Renderer;
 interface NameableInterface
 {
   public function getName(): string;
-  public function setName(string $name);
+  public function setName(string $name): static;
 }

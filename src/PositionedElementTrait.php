@@ -16,7 +16,7 @@ trait PositionedElementTrait
 {
   protected int $position = 0;
 
-  public function setPosition(int $position)
+  public function setPosition(int $position): static
   {
     $this->position = $position;
     return $this;

@@ -9,14 +9,15 @@
 
 namespace JDZ\Renderer;
 
+use JDZ\Renderer\NameableInterface;
 use JDZ\Renderer\Renderable;
 
 /**
- * Button 
+ * Button
  *
  * @author Joffrey Demetz <joffrey.demetz@gmail.com>
  */
-class Button extends Renderable
+class Button extends Renderable implements NameableInterface
 {
   use \JDZ\Renderer\NamedElementTrait;
 
@@ -39,25 +40,37 @@ class Button extends Renderable
     $this->href = $href;
   }
 
-  public function setTip(string $tip)
+  public function setHref(string $href): static
+  {
+    $this->href = $href;
+    return $this;
+  }
+
+  public function setTarget(string $target): static
+  {
+    $this->target = $target;
+    return $this;
+  }
+
+  public function setTip(string $tip): static
   {
     $this->tip = $tip;
     return $this;
   }
 
-  public function setWidth(int $width)
+  public function setWidth(int $width): static
   {
     $this->width = $width;
     return $this;
   }
 
-  public function setIcon(string $icon)
+  public function setIcon(string $icon): static
   {
     $this->icon = $icon;
     return $this;
   }
 
-  public function setText(string $text)
+  public function setText(string $text): static
   {
     $this->text = $text;
     return $this;

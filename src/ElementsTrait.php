@@ -32,7 +32,7 @@ trait ElementsTrait
     return isset($this->elements[$name]);
   }
 
-  public function addElement(Element $element): mixed
+  public function addElement(Element $element): Element
   {
     $name = $element->getName();
 
@@ -47,11 +47,11 @@ trait ElementsTrait
     return $this->elements[$name];
   }
 
-  public function setElementPosition(string $positionElementName, int|string $position, string $direction = 'before')
+  public function setElementPosition(string $positionElementName, int|string $position, string $direction = 'before'): static
   {
     $positionKeys = [];
     foreach ($this->elements as $element) {
-      $positionKeys[$element->position] = $element->getName();
+      $positionKeys[$element->getPosition()] = $element->getName();
     }
     ksort($positionKeys);
 
@@ -93,12 +93,12 @@ trait ElementsTrait
     return $this;
   }
 
-  public function setElementPositionAfter(string $positionElementName, string $offsetElementName)
+  public function setElementPositionAfter(string $positionElementName, string $offsetElementName): static
   {
     return $this->setElementPosition($positionElementName, $this->getElement($offsetElementName)->getPosition(), 'after');
   }
 
-  public function setElementPositionBefore(string $positionElementName, string $offsetElementName)
+  public function setElementPositionBefore(string $positionElementName, string $offsetElementName): static
   {
     return $this->setElementPosition($positionElementName, $this->getElement($offsetElementName)->getPosition(), 'before');
   }
@@ -109,11 +109,11 @@ trait ElementsTrait
     $elementsNotPositionned = [];
 
     foreach ($this->elements as $element) {
-      if (0 === $element->position) {
+      if (0 === $element->getPosition()) {
         $elementsNotPositionned[] = $element->toData();
         continue;
       }
-      $elements[$element->position] = $element->toData();
+      $elements[$element->getPosition()] = $element->toData();
     }
 
     ksort($elements);
