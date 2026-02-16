@@ -9,18 +9,15 @@
 
 namespace JDZ\Renderer;
 
-use JDZ\Renderer\NameableInterface;
-use JDZ\Renderer\Renderable;
+use JDZ\Renderer\Element;
 
 /**
  * Button
  *
  * @author Joffrey Demetz <joffrey.demetz@gmail.com>
  */
-class Button extends Renderable implements NameableInterface
+class Button extends Element
 {
-  use \JDZ\Renderer\NamedElementTrait;
-
   protected string $renderer = 'button';
 
   protected string $tag;
@@ -38,6 +35,12 @@ class Button extends Renderable implements NameableInterface
     $this->tag = $tag;
     $this->target = $target;
     $this->href = $href;
+  }
+
+  public function setTag(string $tag): static
+  {
+    $this->tag = $tag;
+    return $this;
   }
 
   public function setHref(string $href): static

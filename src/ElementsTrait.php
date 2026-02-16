@@ -19,6 +19,11 @@ trait ElementsTrait
   protected array $elements = [];
   protected int $currentPosition = 0;
 
+  public function getElements(): array
+  {
+    return $this->elements;
+  }
+
   public function getElement(string $name): Element
   {
     if (false === $this->hasElement($name)) {
@@ -30,6 +35,12 @@ trait ElementsTrait
   public function hasElement(string $name): bool
   {
     return isset($this->elements[$name]);
+  }
+
+  public function removeElement(string $name): static
+  {
+    unset($this->elements[$name]);
+    return $this;
   }
 
   public function addElement(Element $element): Element
