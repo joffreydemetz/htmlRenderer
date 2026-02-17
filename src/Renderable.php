@@ -9,7 +9,7 @@
 
 namespace JDZ\Renderer;
 
-use JDZ\Renderer\RenderableInterface;
+use JDZ\Renderer\Contract\RenderableInterface;
 
 /**
  * @author Joffrey Demetz <joffrey.demetz@gmail.com>

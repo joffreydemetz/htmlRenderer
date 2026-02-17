@@ -9,8 +9,8 @@
 
 namespace JDZ\Renderer;
 
-use JDZ\Renderer\NameableInterface;
-use JDZ\Renderer\PositionableInterface;
+use JDZ\Renderer\Contract\NameableInterface;
+use JDZ\Renderer\Contract\PositionableInterface;
 use JDZ\Renderer\Renderable;
 
 /**
