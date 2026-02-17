@@ -23,7 +23,6 @@ class Button extends Element
   protected string $tag;
   protected ?string $href;
   protected ?string $target;
-
   protected string $text = '';
   protected string $tip = '';
   protected string $icon = '';
