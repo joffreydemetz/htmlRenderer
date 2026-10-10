@@ -2,6 +2,7 @@
 
 namespace JDZ\Renderer\Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use JDZ\Renderer\Pager;
 use JDZ\Renderer\PagerPage;
@@ -180,5 +181,25 @@ class PagerTest extends TestCase
         $this->assertSame($pager, $pager->setNextSymbol('>'));
         $this->assertSame($pager, $pager->setPrevText('Prev'));
         $this->assertSame($pager, $pager->setNextText('Next'));
+    }
+
+    public static function outOfRangePages(): array
+    {
+        return [
+            // toData() used to throw "Page 9 not found"
+            'beyond the last page: the last one' => [9, 5],
+            'page 0: the first one' => [0, 1],
+        ];
+    }
+
+    #[DataProvider('outOfRangePages')]
+    public function testAPageOutOfRangeIsClampedToTheList(int $asked, int $active): void
+    {
+        $pager = (new Pager())->load(5, $asked);
+
+        $data = $pager->toData();
+
+        $this->assertCount(7, $data['pages']);
+        $this->assertStringContainsString('active', $data['pages'][$active]['attrs']['class'] ?? '');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace JDZ\Renderer\Tests;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use JDZ\Renderer\Button;
 
@@ -136,5 +137,22 @@ class ButtonTest extends TestCase
         $data = $btn->toData();
 
         $this->assertEquals('#', $data['attrs']['href']);
+    }
+
+    public static function targets(): array
+    {
+        return [
+            'a keyword without its underscore' => ['blank', '_blank'],
+            // it rendered "__blank"
+            'a keyword given with its underscore' => ['_blank', '_blank'],
+        ];
+    }
+
+    #[DataProvider('targets')]
+    public function testTheTargetGetsOneUnderscore(string $target, string $rendered): void
+    {
+        $data = (new Button('open', 'a', '/x'))->setTarget($target)->toData();
+
+        $this->assertSame($rendered, $data['attrs']['target']);
     }
 }

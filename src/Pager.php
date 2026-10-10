@@ -61,7 +61,8 @@ class Pager extends Renderable
 
   public function load(int $nbPages, int $page, string $baseUrl = ''): static
   {
-    $this->currentPageNum = $page;
+    // a page outside the list is its nearest end (one beyond the last made toData() throw)
+    $this->currentPageNum = max(1, min($page, max(1, $nbPages)));
     $this->baseUrl = $baseUrl;
 
     for ($i = 0; $i < $nbPages; $i++) {

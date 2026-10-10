@@ -129,7 +129,8 @@ class Button extends Element
       $attrs['href'] = $this->href;
 
       if ($this->target) {
-        $attrs['target'] = '_' . $this->target;
+        // one underscore, given or not ('_blank' rendered "__blank")
+        $attrs['target'] = '_' . ltrim($this->target, '_');
       }
     } else {
       $this->href = '';
